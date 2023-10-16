@@ -46,9 +46,6 @@ def update_recipe(current_user_token,id):
     recipe = Recipe.query.get(id) 
     recipe.title = request.json['title']
     recipe.contributor = request.json['contributor']
-    recipe.prep_time = request.json['prep_time']
-    recipe.rise_time = request.json['rise_time']
-    recipe.bake_time = request.json['bake_time']
     recipe.ingredients = request.json['ingredients']
     recipe.instructions = request.json['instructions']
     recipe.user_token = current_user_token.token
