@@ -10,14 +10,11 @@ api = Blueprint('api',__name__, url_prefix='/api')
 def create_recipe(current_user_token):
     title = request.json['title']
     contributor = request.json['contributor']
-    prep_time = request.json['prep_time']
-    rise_time = request.json['rise_time']
-    bake_time = request.json['bake_time']
     ingredients = request.json['ingredients']
     instructions = request.json['instructions']
     user_token = current_user_token.token
 
-    recipe = Recipe(title, contributor, prep_time, rise_time, bake_time, ingredients, instructions, user_token = user_token )
+    recipe = Recipe(title, contributor, ingredients, instructions, user_token = user_token )
 
     db.session.add(recipe)
     db.session.commit()

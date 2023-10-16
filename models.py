@@ -53,21 +53,15 @@ class Recipe(db.Model):
     id = db.Column(db.String, primary_key = True)
     title = db.Column(db.String(200))
     contributor = db.Column(db.String(150))
-    prep_time = db.Column(db.String(100))
-    rise_time = db.Column(db.String(100))
-    bake_time = db.Column(db.String(100))
     ingredients = db.Column(db.String(2000))
     instructions = db.Column(db.String(2000))
 
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-    def __init__(self, title, contributor, prep_time, rise_time, bake_time, ingredients, instructions, user_token, id=''):
+    def __init__(self, title, contributor, ingredients, instructions, user_token, id=''):
         self.id = self.set_id()
         self.title = title
         self.contributor = contributor
-        self.prep_time = prep_time
-        self.rise_time = rise_time
-        self.bake_time = bake_time
         self.ingredients = ingredients
         self.instructions = instructions
         self.user_token = user_token
@@ -81,7 +75,7 @@ class Recipe(db.Model):
 
 class RecipeSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'title', 'contributor','prep_time', 'rise_time', 'bake_time', 'ingredients', 'instructions']
+        fields = ['id', 'title', 'contributor', 'ingredients', 'instructions']
 
 recipe_schema = RecipeSchema()
 recipes_schema = RecipeSchema(many=True)
